@@ -1,0 +1,451 @@
+package pbcGasPrices;
+
+import java.util.Scanner;
+
+public class AppInput implements Application {
+	
+//	First Gas Station Variables
+	private String gasstation1;
+	private String city1;
+	private int regular1;
+	private int diesel1;
+	private int premium1;
+	
+//	Second Gas Station Variables
+	private String gasstation2;
+	private String city2;
+	private int regular2;
+	private int diesel2;
+	private int premium2;
+	
+//	Third Gas Station Variables
+	private String gasstation3;
+	private String city3;
+	private int regular3;
+	private int diesel3;
+	private int premium3;
+	
+	
+	private int [] regularArray = new int[3];
+	private int [] dieselArray = new int [3];
+	private int [] premiumArray = new int [3];
+	private int regflag = -1;
+	private int ifthen;
+	
+	
+	private int LowestRegular;
+//	private int HighestRegular;
+//	private int LowestRegularFinal;
+//	private int [] twoLowestReg = new int [2];
+	
+	private int LowestDiesel;
+//	private int HighestDiesel1;
+//	private int LowestDieselFinal;
+	
+	
+	private int LowestPremium;
+//	private int HighestPremium1;
+//	private int LowestPremiumFinal;
+	
+	
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		System.out.println("Compare Palm Beach County Gas Stations");
+		
+		AppInput userresponse = new AppInput();
+		userresponse.GasStationInput();
+		
+		userresponse.regular();
+		userresponse.diesel();
+		userresponse.premium();
+
+		System.out.println(" ");
+		System.out.println(" ");
+		System.out.println("Cheapest Gas Prices in Palm Beach County:");
+		userresponse.DisplayOutputRegular();
+		userresponse.DisplayOutputDiesel();
+		userresponse.DisplayOutputPremium();
+		
+
+	}
+	
+	public void GasStationInput(){
+		
+		Scanner ncp = new Scanner(System.in);
+		
+		//1st gas station info
+				System.out.println(" ");
+				System.out.print("Enter 1st gas station name: ");
+				String stationchoice1 = ncp.next();
+				
+				gasstation1 = stationchoice1;
+				
+				System.out.println(" ");
+				System.out.print("Enter 1st gas station city: ");
+				String citychoice1 = ncp.next();
+				
+				city1 = citychoice1;
+				
+				System.out.println(" ");
+				System.out.print("Enter regular gas price for 1st gas station per gallon: ");
+				int regularprice1 = ncp.nextInt();
+				
+				regular1 = regularprice1;
+				
+				System.out.println(" ");
+				System.out.print("Enter diesel gas price for 1st gas station per gallon: ");
+				int dieselprice1 = ncp.nextInt();
+				
+				diesel1 = dieselprice1;
+				
+				System.out.println(" ");
+				System.out.print("Enter premium gas price for 1st gas station per gallon: ");
+				int premiumprice1 = ncp.nextInt();
+				
+				premium1 = premiumprice1;
+				
+			//2nd gas station info	
+				System.out.println(" ");
+				System.out.print("Enter 2nd gas station name: ");
+				String stationchoice2 = ncp.next();
+				
+				gasstation2 = stationchoice2;
+				
+				System.out.println(" ");
+				System.out.print("Enter 2nd gas station city: ");
+				String citychoice2 = ncp.next();
+				
+				city2 = citychoice2;
+				
+				System.out.println(" ");
+				System.out.print("Enter regular gas price for 2nd gas station per gallon: ");
+				int regularprice2 = ncp.nextInt();
+				
+				regular2 = regularprice2;
+				
+				System.out.println(" ");
+				System.out.print("Enter diesel gas price for 2nd gas station per gallon: ");
+				int dieselprice2 = ncp.nextInt();
+				
+				diesel2 = dieselprice2;
+				
+				System.out.println(" ");
+				System.out.print("Enter premium gas price for 2nd gas station per gallon: ");
+				int premiumprice2 = ncp.nextInt();
+				
+				premium2 = premiumprice2;
+				
+			//3rd gas station info	
+				System.out.println(" ");
+				System.out.print("Enter 3rd gas station name: ");
+				String stationchoice3 = ncp.next();
+				
+				gasstation3 = stationchoice3;
+				
+				System.out.println(" ");
+				System.out.print("Enter 3rd gas station city: ");
+				String citychoice3 = ncp.next();
+				
+				city3 = citychoice3;
+				
+				System.out.println(" ");
+				System.out.print("Enter regular gas price for 3rd gas station per gallon: ");
+				int regularprice3 = ncp.nextInt();
+				
+				regular3 = regularprice3;
+				
+				System.out.println(" ");
+				System.out.print("Enter diesel gas price for 3rd gas station per gallon: ");
+				int dieselprice3 = ncp.nextInt();
+				
+				diesel3 = dieselprice3;
+				
+				System.out.println(" ");
+				System.out.print("Enter premium gas price for 3rd gas station per gallon: ");
+				int premiumprice3 = ncp.nextInt();
+				
+				premium3 = premiumprice3;
+				
+				
+				
+	}
+	
+
+//Lowest regular gas price	
+	public void regular(){
+		
+		int [] compareRegular = {regular1, regular2, regular3};
+
+		
+			for(int r = 0; r < compareRegular.length; r++){
+//				regflag++;
+				regularArray[r] = compareRegular[r];	
+				
+				if ((regular1 < regular2) && (regular1 < regular3)){
+					
+					LowestRegular = regular1;
+				}
+				
+				else if ((regular2 < regular1) && (regular2 < regular3)){
+					
+					LowestRegular = regular2;
+				}
+				
+				else if ((regular3 < regular1) && (regular3 < regular2)){
+					
+					LowestRegular = regular3;
+				}
+				
+				
+				
+				else if ((regular1 == regular2) && (regular1 < regular3)){
+					
+					regularArray[r]= regular1;
+					regularArray[r] = regular2;
+				}
+				
+				else if ((regular2 == regular3) && (regular2 < regular1)){
+					
+					regularArray[r] = regular2;
+					regularArray[r] = regular3;
+					
+				}
+				
+				else if ((regular1 == regular2) && (regular1 == regular3)){
+					
+					regularArray[r] = regular1;
+					regularArray[r] = regular2;
+					regularArray[r] = regular3;
+				}
+			}
+			
+		}
+		
+
+	
+	
+//	Lowest diesel gas price
+	public void diesel(){
+		
+		int [] compareDiesel = {diesel1, diesel2, diesel3};
+		
+		for(int d = 0; d < compareDiesel.length; d++){
+//			regflag++;
+			dieselArray[d] = compareDiesel[d];	
+			
+			if ((diesel1 < diesel2) && (diesel1 < diesel3)){
+				
+				LowestDiesel = diesel1;
+			}
+			
+			else if ((diesel2 < diesel1) && (diesel2 < diesel3)){
+				
+				LowestDiesel = diesel2;
+			}
+			
+			else if ((diesel3 < diesel2) && (diesel3 < diesel2)){
+				LowestDiesel = diesel3;
+			}
+			
+			else if ((diesel1 == diesel2) && (diesel1 < diesel3)){
+				
+				dieselArray[d]= diesel1;
+				dieselArray[d] = diesel2;
+			}
+			
+			else if ((diesel2 == diesel3) && (diesel2 < diesel1)){
+				
+				dieselArray[d] = diesel2;
+				dieselArray[d] = diesel3;
+				
+			}
+			
+			else if ((diesel1 == diesel2) && (diesel1 == diesel3)){
+				
+				dieselArray[d] = diesel1;
+				dieselArray[d] = diesel2;
+				dieselArray[d] = diesel3;
+			}
+		}
+		
+
+	}
+	
+	
+//	Lowest premium gas price
+	public void premium(){
+		
+		int [] comparePremium = {premium1, premium2, premium3};
+		
+		for(int d = 0; d < comparePremium.length; d++){
+//			regflag++;
+			premiumArray[d] = comparePremium[d];	
+			
+			if ((premium1 < premium2) && (premium1 < premium3)){
+				
+				LowestPremium = premium1;
+			}
+			
+			else if ((premium2 < premium1) && (premium2 < premium3)){
+				
+				LowestPremium = premium2;
+			}
+			
+			else if ((premium3 < premium1) && (premium3 < premium2)){
+				
+				LowestPremium = premium3;
+			}
+			
+			else if ((premium1 == premium2) && (premium1 < premium3)){
+				
+				premiumArray[d]= premium1;
+				premiumArray[d] = premium2;
+			}
+			
+			else if ((premium2 == premium3) && (premium2 < premium1)){
+				
+				premiumArray[d] = premium2;
+				premiumArray[d] = premium3;
+				
+			}
+			
+			else if ((premium1 == premium2) && (premium1 == premium3)){
+				
+				premiumArray[d] = premium1;
+				premiumArray[d] = premium2;
+				premiumArray[d] = premium3;
+			}
+		}
+		
+	}
+	
+	
+//	Display lowest regular gas price
+	public void DisplayOutputRegular(){
+		
+		if (LowestRegular == regular1){
+			System.out.println(" ");
+			System.out.println("Least gas price for regular: " + gasstation1 + " in " + city1 + " " + "for " + "$" + regular1 + " per gallon");
+		}
+		
+		else if (LowestRegular == regular2) {
+			System.out.println(" ");
+			System.out.println("Least gas price for regular: " + gasstation2 + " in " + city2 + " " + "for " + "$" + regular2 + " per gallon");
+		}
+		
+		else if (LowestRegular == regular3){
+			System.out.println(" ");
+			System.out.println("Least gas price for regular: " + gasstation3 + " in " + city3 + " " + "for " + "$" + regular3 + " per gallon");
+		}
+		
+		else if ((regular1 == regular2) && (regular1 < regular3)){
+			System.out.println(" ");
+			System.out.println("Least gas price for regular: " + gasstation1 + " in " + city1 + " & " + gasstation2 + " in " + city2 + " " + "for " + "$" + regular1 + " per gallon");
+		}
+		
+		else if ((regular1 == regular3) && (regular1 < regular2)){
+			System.out.println(" ");
+			System.out.println("Least gas price for regular: " + gasstation1 + " in " + city1 + " & " + gasstation3 + " in " + city3 + " " + "for " + "$" + regular1 + " per gallon");
+		}
+		
+		else if ((regular2 == regular3) && (regular2 < regular1)){
+			System.out.println("Least gas price for regular: " + gasstation2 + " in " + city2 + " & " + gasstation3 + " in " + city3 + " " + "for " + "$" + regular2 + " per gallon");
+		}
+		
+		else if ((regular1 == regular2) && (regular1 == regular3)){
+			System.out.println(" ");
+			System.out.println("Least gas price for regular: " + gasstation1 + " in " + city1 + " , " + gasstation2 + " in " + city2 + " & " + gasstation3 + " in " + city3 + " " + "for " + "$" + regular1 + " per gallon");
+		}
+		
+	}
+	
+	
+//	Display lowest diesel gas price
+	public void DisplayOutputDiesel(){
+		
+		if (LowestDiesel == diesel1){
+			System.out.println(" ");
+			System.out.println("Least gas price for diesel: " + gasstation1 + " in " + city1 + " " + "for " + "$" + diesel1 + " per gallon");
+		}
+		
+		else if (LowestDiesel == diesel2){
+			System.out.println(" ");
+			System.out.println("Least gas price for diesel: " + gasstation2 + " in " + city2 + " " + "for " + "$" + diesel2 + " per gallon");
+		}
+		
+		else if (LowestDiesel == diesel3){
+			System.out.println(" ");
+			System.out.println("Least gas price for diesel: " + gasstation3 + " in " + city3 + " " + "for " + "$" + diesel3 + " per gallon");
+		}
+		
+		else if ((diesel1 == diesel2) && (diesel1 < diesel3)){
+			System.out.println(" ");
+			System.out.println("Least gas price for diesel: " + gasstation1 + " in " + city1 + " & " + gasstation2 + " in " + city2 + " " + "for " + "$" + diesel1 + " per gallon");
+		}
+		
+		else if ((diesel1 == diesel3) && (diesel1 < diesel2)){
+			System.out.println(" ");
+			System.out.println("Least gas price for diesel: " + gasstation1 + " in " + city1 + " & " + gasstation3 + " in " + city3 + " " + "for " + "$" + diesel1 + " per gallon");
+		}
+		
+		else if ((diesel2 == diesel3) && (diesel2 < diesel1)){
+			System.out.println(" ");
+			System.out.println("Least gas price for diesel: " + gasstation2 + " in " + city2 + " & " + gasstation3 + " in " + city3 + " " + "for " + "$" + diesel2 + " per gallon");
+		}
+		
+		else if ((diesel1 == diesel2) && (diesel1 == diesel3)){
+			System.out.println(" ");
+			System.out.println("Least gas price for premium: " + gasstation1 + " in " + city1 + " , " + gasstation2 + " in " + city2 + " & " + gasstation3 + " in " + city3 + " " + "for " + "$" + diesel1 + " per gallon");
+		}
+		
+
+	}
+	
+	
+//	Display lowest premium gas price
+	public void DisplayOutputPremium(){
+		
+		if (LowestPremium == premium1){
+			System.out.println(" ");
+			System.out.println("Least gas price for premium: " + gasstation1 + " in " + city1 + " " + "for " + "$" + premium1 + " per gallon");
+		}
+		
+		else if (LowestPremium == premium2){
+			System.out.println(" ");
+			System.out.println("Least gas price for premium: " + gasstation2 + " in " + city2 + " " + "for " + "$" + premium2 + " per gallon");
+		}
+		
+		else if (LowestPremium == premium3){
+			System.out.println(" ");
+			System.out.println("Least gas price for premium: " + gasstation3 + " in " + city3 + " " + "for " + "$" + premium3 + " per gallon");
+		}
+		
+		else if ((premium1 == premium2) && (premium1 < premium3)){
+			System.out.println(" ");
+			System.out.println("Least gas price for premium: " + gasstation1 + " in " + city1 + " & " + gasstation2 + " in " + city2 + " " + "for " + "$" + premium1 + " per gallon");			
+		}
+		
+		else if ((premium1 == premium3) && (premium1 < premium2)){
+			System.out.println(" ");
+			System.out.println("Least gas price for premium: " + gasstation1 + " in " + city1 + " & " + gasstation3 + " in " + city3 + " " + "for " + "$" + premium1 + " per gallon");			
+		}
+		
+		else if ((premium2 == premium3) && (premium2 < premium1)){
+			System.out.println(" ");
+			System.out.println("Least gas price for premium: " + gasstation2 + " in " + city2 + " & " + gasstation3 + " in " + city3 + " " + "for " + "$" + premium2 + " per gallon");			
+		}
+		
+		else if ((premium1 == premium2)&& (premium1 == premium3)){
+			System.out.println(" ");
+			System.out.println("Least gas price for premium: " + gasstation1 + " in " + city1 + " , " + gasstation2 + " in " + city2 + " & " + gasstation3 + " in " + city3 + " " + "for " + "$" + premium1 + " per gallon");		
+		}
+		
+		
+		
+		
+	}
+		
+
+}
